@@ -6,6 +6,7 @@ import { getOrderDetails } from "@/api/get-order-details";
 import { OrderStatus } from "@/components/order-status";
 import { DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Table, TableBody, TableCell, TableFooter, TableHead, TableHeader, TableRow } from "@/components/ui/table";
+import { OrderDetailsSkeleton } from './order-details-skeleton';
 
 export interface OrderDetailsProps {
     orderId: string;
@@ -27,7 +28,7 @@ export function OrderDetails({ orderId, open }: OrderDetailsProps) {
                 <DialogDescription>Detalhes do pedido</DialogDescription>
             </DialogHeader>
 
-            {order && (
+            {order ? (
                 <div className="space-y-6">
                     <Table>
                         <TableBody>
@@ -111,6 +112,8 @@ export function OrderDetails({ orderId, open }: OrderDetailsProps) {
                         </TableFooter>
                     </Table>
                 </div>
+            ) : (
+                <OrderDetailsSkeleton />
             )}
         </DialogContent>
     )
